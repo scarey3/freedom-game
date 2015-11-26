@@ -11,15 +11,41 @@
 #define ROWS 10
 #define COLUMNS 10
 
-void printBoard(char board[][]);
+void clearBoard(char board[][COLUMNS]);
+void printBoard(char board[][COLUMNS]);
 
-int main() {
+int main(void) {
     char boardArray[ROWS][COLUMNS];
     
-  	return 0;
+    clearBoard(boardArray);
+    printBoard(boardArray);
+    
+    return 0;
 }
 
-// TODO: Function will print the board.
-void printBoard(char board[][]) {
+void clearBoard(char board[][COLUMNS]) {
+    int i = 0;
+    int j = 0;
+    
+    for(i = 0; i < ROWS; i++)
+        for(j = 0; j < COLUMNS; j++)
+            board[i][j] = ' ';
+}
 
+// Function prints the board.
+void printBoard(char board[][COLUMNS]) {
+    int i = 0;
+    int j = 0;
+    
+    printf("  ");
+    for(i = 0; i < COLUMNS; i++){
+        printf(" [%c]", i + 65);
+    }
+    
+    for(i = 0; i < ROWS; i++) {
+        printf("\n[%d] ", i);
+        for(j = 0; j < COLUMNS; j++)
+            printf("%c   ", board[i][j]);
+        printf("\n");
+    }
 }

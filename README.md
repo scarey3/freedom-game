@@ -2,3 +2,5 @@
 
 #### Build project:
 	make
+#### Run project:
+	./freedomGame

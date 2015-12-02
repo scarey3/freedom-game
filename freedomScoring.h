@@ -8,6 +8,12 @@
 
 #ifndef FREEDOMSCORING_H
     #define FREEDOMSCORING_H
-    // Function declarations go here.
+    
+    #define ROWS 10
+    #define COLUMNS 10
+    
+    void checkVertical(char board[][COLUMNS], int live[][COLUMNS]);
+    void checkHorizontal(char board[][COLUMNS], int live[][COLUMNS]);
+    void checkDiagonal(char board[][COLUMNS], int live[][COLUMNS]);
     
 #endif

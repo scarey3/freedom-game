@@ -12,6 +12,7 @@
 
 #define MAX_BUF 1024
 #define MIN_SIZE 10
+#define MAX_SIZE 26
 
 void clearBoard(char **board, int size);
 void printBoard(char **board, int size);
@@ -19,14 +20,16 @@ char** allocateBoard(int size);
 void freeBoard(char **board, int size);
 int getSize();
 
-int main(void) {
+int main() {
     char **board;
     int size = getSize();
     
     board = allocateBoard(size);
+    printf("board allocated\n");
     clearBoard(board, size);
+    printf("board cleared\n");
     printBoard(board, size);
-    
+    printf("board printed\n");
     return 0;
 }
 
@@ -39,7 +42,7 @@ int getSize(){
         fgets(buffer, MAX_BUF-1, stdin);
         buffer[strlen(buffer)-1] = '\0';
         size = atoi(buffer);
-        if(size < MIN_SIZE){
+        if(size < MIN_SIZE || size > MAX_SIZE){
             printf("\"%s\" is not a valid board size, try again:\n", buffer);
             continue;
         }
@@ -63,7 +66,6 @@ char **allocateBoard(int size){
             perror("");
             exit(EXIT_FAILURE);
         }
-        **(board+i) = ' ';
     }
     return board;
 }
@@ -86,18 +88,36 @@ void clearBoard(char **board, int size) {
 
 // Function prints the board.
 void printBoard(char **board, int size) {
-    int i = 0;
-    int j = 0;
+    int i, j;
+    int digits = 0;
+    int spaces = 1;
+    int n;
     
-    printf("  ");
-    for(i = 0; i < size; i++){
-        printf(" [%c]", i + 65);
+    n = size;
+    while(n != 0){
+        n/=10;
+        spaces++;
     }
-    
-    for(i = 0; i < size; i++) {
-        printf("\n[%d] ", i);
-        for(j = 0; j < size; j++)
-            printf("%c   ", board[i][j]);
+    //Print first line
+    printf("%*s", spaces, " ");
+    for(i = 0; i < size; i++)
+        printf("%c ", 'A'+i);
+    printf("\n");
+    //Print rows
+    for(i = size-1; i >= 0; i--){
+        n = i;
+        digits = 0;
+        if(n == 0)
+            digits = 1;
+        else
+            while(n != 0){
+                n/=10;
+                digits++;
+            }
+        printf("%d%*s", i, spaces-digits, " ");
+        for(j = 0; j < size; j++){
+            printf("%c ", board[j][i]);
+        }
         printf("\n");
     }
 }

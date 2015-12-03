@@ -25,11 +25,24 @@ int main() {
     int size = getSize();
     
     board = allocateBoard(size);
-    printf("board allocated\n");
     clearBoard(board, size);
-    printf("board cleared\n");
     printBoard(board, size);
-    printf("board printed\n");
+    
+    //player 1 enter move
+    //Check validity of move
+    //Make move
+    //switch player
+    while(1){
+        //next player enter move
+        //Check validity of move
+        //Make move
+        if(/*moves == size*size*/){
+            //Calculate score
+            //End game
+        }else{
+            //switch player
+        }
+    }
     return 0;
 }
 

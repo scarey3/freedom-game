@@ -6,6 +6,7 @@
 
 #include "freedomScoring.h"
 
+/*
 void checkVertical(char board[][COLUMNS], int live[][COLUMNS]) {
     int count = 0;
     char value;
@@ -18,19 +19,31 @@ void checkVertical(char board[][COLUMNS], int live[][COLUMNS]) {
         count = 0;
         
         for(j = 0; j < ROWS; j++) {
-            if(count >= 0 && count < 4)
+            if(count == 0) {
+                value = board[j][i];
                 count++;
-            else if(((count == 4) && (j == ROWS - 1)) || board[i][j+1] == value) {
+            }
+        
+            if(count > 0 && count < 4 && board[i][j] == value) {
+                count++;
+            }
+            else if((j == ROWS - 1 || board[i][j+1] != value) && count == 4) {
                 for(k = 0; k < 4; k++)
                     live[i][j-k] = 1;
             }
-            
-            if(!count) {
-                value = board[i][j];
-                count++;
-            }
         }
     }
+} */
+
+void checkVertical(char **board, int **live, int col, int row, int count) {
+    if(col > COLUMNS)
+        return;
+    if(count < 5 && (board[row+1][col+1] != board[row][col] || row == ROWS))
+        int i = 0;
+        int j = 0;
+        for(i = 0; i < 4; i++)
+            live[row - i][col];
+        
 }
 
 void checkHorizontal(char board[][COLUMNS], int live[][COLUMNS]) {

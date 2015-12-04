@@ -12,7 +12,7 @@
     #define ROWS 10
     #define COLUMNS 10
     
-    void checkVertical(char board[][COLUMNS], int live[][COLUMNS]);
+    void checkVertical(char **board, int **live, int col, int row, int count);
     void checkHorizontal(char board[][COLUMNS], int live[][COLUMNS]);
     void checkDiagonal(char board[][COLUMNS], int live[][COLUMNS]);
     

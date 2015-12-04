@@ -23,7 +23,11 @@ int getSize();
 int main() {
     char **board;
     int size = getSize();
-    
+    int coordinates[cBUFFER]; /*holds converted coordinates (row, column) of playerMove*/
+    int turn = 0; /*what turn game is currently at*/
+	int valid = 0; /*if move is valid*/
+	int player = 1; /*which player*/
+	
     board = allocateBoard(size);
     clearBoard(board, size);
     printBoard(board, size);

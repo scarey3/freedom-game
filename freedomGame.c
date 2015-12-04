@@ -29,8 +29,12 @@ int main() {
     printBoard(board, size);
     
     //player 1 enter move
+    /*call to getPlayerMove*/
+    /*call convertPlayerMove*/
     //Check validity of move
+    /*call isValid*/
     //Make move
+    /*call implementPlayerMove*/
     //switch player
     while(1){
         //next player enter move

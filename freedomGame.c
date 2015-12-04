@@ -33,7 +33,9 @@ int main() {
     printBoard(board, size);
     
     //player 1 enter move
-    /*call to getPlayerMove*/
+    printf("Welcome to Freedom! White goes first! Please choose a space.\n");
+    getPlayerMove(playerMove);
+    
     /*call convertPlayerMove*/
     //Check validity of move
     /*call isValid*/

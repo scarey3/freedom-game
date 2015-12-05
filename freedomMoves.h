@@ -5,6 +5,8 @@
  */
 
 #include <stdio.h>
+#define pmBUFFER 4 /*for playerMove buffer*/
+#define cBUFFER 3 /*coordinates buffer*/
 
 #ifndef FREEDOMMOVES_H
     #define FREEDOMMOVES_H

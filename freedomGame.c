@@ -14,12 +14,14 @@
 #define MIN_SIZE 10
 #define MAX_SIZE 26
 
+/*Prototype declarations*/
 void clearBoard(char **board, int size);
 void printBoard(char **board, int size);
 char** allocateBoard(int size);
 void freeBoard(char **board, int size);
 int getSize();
 
+/*****************Main***************/
 int main() {
     char **board;
     int size = getSize();
@@ -60,6 +62,7 @@ int main() {
     return 0;
 }
 
+/*******************Functions********************/
 //Gets board size from user
 int getSize(){
     char buffer[MAX_BUF];

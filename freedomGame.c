@@ -33,7 +33,7 @@ int main() {
     int player = 1; /*which player*/
     
     /*clear playerMove*/
-    memset(playerMove, '\0', pmBUFFER);	
+    memset(playerMove, '\0', MAX_BUF);	
     
     board = allocateBoard(size);
     clearBoard(board, size);

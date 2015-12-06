@@ -26,7 +26,7 @@ int main() {
     char **board; //The game board
     int size = getSize(); //Size of one dimension of the board
     int maxTurns = size*size; //Max number of turns
-    char playerMove[MAX_BUF]; /*holds player coordinates*/
+    char playerMove[pmBUFFER]; /*holds player coordinates*/
     int previousRowCoordinate, previousColumnCoordinate; /*previous row, column coordinates*/
 	int rowCoordinate, columnCoordinate; /*holds converted coordinates (row, column) of playerMove*/
     int turn = 0; /*what turn game is currently at*/
@@ -34,7 +34,7 @@ int main() {
     int player = 1; /*which player*/
     
     /*clear playerMove*/
-    memset(playerMove, '\0', MAX_BUF);	
+    memset(playerMove, '\0', pmBUFFER);	
     
     board = allocateBoard(size);
     clearBoard(board, size);

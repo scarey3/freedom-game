@@ -28,7 +28,7 @@ int main() {
     int maxTurns = size*size; //Max number of turns
     char playerMove[pmBUFFER]; /*holds player coordinates*/
     int previousRowCoordinate, previousColumnCoordinate; /*previous row, column coordinates*/
-	int rowCoordinate, columnCoordinate; /*holds converted coordinates (row, column) of playerMove*/
+    int rowCoordinate, columnCoordinate; /*holds converted coordinates (row, column) of playerMove*/
     int turn = 0; /*what turn game is currently at*/
     int valid = 0; /*if move is valid*/
     int player = 1; /*which player*/

@@ -21,6 +21,7 @@ void score(char **board, int size) {
     int i = 0;
     int j = 0;
     
+    // Perform checks in each direction across the board.
     checkVertical(board, state, size);
     checkHorizontal(board, state, size);
     checkDiagonal(board, state, size);
@@ -45,7 +46,7 @@ void score(char **board, int size) {
     }
 }
 
-// Creates the state array
+// Dynamically creates the state array
 int **allocateStateArray(int size) {
     int i = 0;
     int j = 0;
@@ -54,6 +55,7 @@ int **allocateStateArray(int size) {
         state[i] = (int*)malloc(size * sizeof(int));
     }
     
+    // Set all values to zero.
     for(i = 0; i < size; i++)
         for(j = 0; j < size; j++)
             state[i][j] = 0;
@@ -72,7 +74,8 @@ void checkVertical(char **board, int **state, int size) {
     int i = 0;
     int j = 0;
     int k = 0;
-
+    
+    // Traverse through each column, count consecutive like-elements, and store them according to player in state array.
     for(j = 0; j < size; j++) {
         count = 0;
         for(i = 0; i < size; i++) {
@@ -108,6 +111,7 @@ void checkHorizontal(char **board, int **state, int size) {
     int j = 0;
     int k = 0;
 
+    // Traverse through each row, count consecutive like-elements, and store them according to player in state array.
     for(i = 0; i < size; i++) {
         count = 0;
         for(j = 0; j < size; j++) {
@@ -145,21 +149,32 @@ void checkDiagonal(char **board, int **state, int size) {
     int j = 0;
     int k = 0;
     
-    // Pass 1 starts from top-left.
+    /*
+     * Checking for diagonal matches is broken up into four sections. Each section covers
+     * half the array, two for each diagonal direction (SW->NE & NW->SE).
+     */
+    
+    // Section 1 starts from top-left.
     for(i = 3; i < size; i++) {
+        // Reset count on each new diagonal pass.
         count = 0;
         for(j = 0; i-j >= 0; j++) {
+            // Set current row value.
             row = i - j;
+            // If count is zero, set a new reference value for comparison.
             if(count == 0) {
                 value = board[row][j];
                 count++;
             }
+            // If the next element is the same as the preceding, increment count.
             else if(board[row][j] == value)
                 count++;
+            // Otherwise, set the reference value to the current element and set count to 1.
             else {
                 value = board[row][j];
                 count = 1;
             }
+            // Check for 4 when row > 0 to remain in bounds.
             if(count == 4 && row > 0) {
                 if(board[row-1][j+1] != value) {
                     if(value == p1)
@@ -171,6 +186,7 @@ void checkDiagonal(char **board, int **state, int size) {
                     count = 0;
                 }
             }
+            // Edge of board. Next element would be out of bounds, therefore no further checks.
             else if(count == 4 && row == 0) {
                 if(value == p1)
                         stateValue = 1;
@@ -183,21 +199,27 @@ void checkDiagonal(char **board, int **state, int size) {
         }
     }
     
-    // Pass 2 starts from bottom-left.
+    // Section 2 starts from bottom-left.
     for(i = size - 4; i >= 0; i--) {
+        // Reset count on each new diagonal pass.
         count = 0;
         for(j = 0; i+j < size; j++) {
+            // Set current row value.
             row = i + j;
+            // If count is zero, set a new reference value for comparison.
             if(count == 0) {
                 value = board[row][j];
                 count++;
             }
+            // If the next element is the same as the preceding, increment count.
             else if(board[row][j] == value)
                 count++;
+            // Otherwise, set the reference value to the current element and set count to 1.
             else {
                 value = board[row][j];
                 count = 1;
             }
+            // Check for 4 when row > 0 to remain in bounds.
             if(count == 4 && row < size-1) {
                 if(board[row+1][j+1] != value) {
                     if(value == p1)
@@ -209,6 +231,7 @@ void checkDiagonal(char **board, int **state, int size) {
                     count = 0;
                 }
             }
+            // Edge of board. Next element would be out of bounds, therefore no further checks.
             else if(count == 4 && row == size-1) {
                 if(value == p1)
                         stateValue = 1;
@@ -221,21 +244,27 @@ void checkDiagonal(char **board, int **state, int size) {
         }
     }
     
-    // Pass 3 starts from top-right.
+    // Section 3 starts from top-right.
     for(i = 3; i < size; i++) {
+        // Reset count on each new diagonal pass.
         count = 0;
         for(j = size - 1; i-((size-1)-j) >= 0; j--) {
+            // Set current row value.
             row = i-((size-1)-j);
+            // If count is zero, set a new reference value for comparison.
             if(count == 0) {
                 value = board[row][j];
                 count++;
             }
+            // If the next element is the same as the preceding, increment count.
             else if(board[row][j] == value)
                 count++;
+            // Otherwise, set the reference value to the current element and set count to 1.
             else {
                 value = board[row][j];
                 count = 1;
             }
+            // Check for 4 when row > 0 to remain in bounds.
             if(count == 4 && row > 0) {
                 if(board[row-1][j-1] != value) {
                     if(value == p1)
@@ -247,6 +276,7 @@ void checkDiagonal(char **board, int **state, int size) {
                     count = 0;
                 }
             }
+            // Edge of board. Next element would be out of bounds, therefore no further checks.
             else if(count == 4 && row == 0) {
                 if(value == p1)
                         stateValue = 1;
@@ -259,21 +289,27 @@ void checkDiagonal(char **board, int **state, int size) {
         }
     }
     
-    // Pass 4 starts from bottom-right.
+    // Section 4 starts from bottom-right.
     for(i = size - 4; i >= 0; i--) {
+        // Reset count on each new diagonal pass.
         count = 0;
         for(j = size - 1; i+(size-1)-j < size; j--) {
+            // Set current row value.
             row = i+(size-1)-j;
+            // If count is zero, set a new reference value for comparison.
             if(count == 0) {
                 value = board[row][j];
                 count++;
             }
+            // If the next element is the same as the preceding, increment count.
             else if(board[row][j] == value)
                 count++;
+            // Otherwise, set the reference value to the current element and set count to 1.
             else {
                 value = board[row][j];
                 count = 1;
             }
+            // Check for 4 when row > 0 to remain in bounds.
             if(count == 4 && row < size-1) {
                 if(board[row-1][j+1] != value) {
                     if(value == p1)
@@ -285,6 +321,7 @@ void checkDiagonal(char **board, int **state, int size) {
                     count = 0;
                 }
             }
+            // Edge of board. Next element would be out of bounds, therefore no further checks.
             else if(count == 4 && row == size-1) {
                 if(value == p1)
                         stateValue = 1;

@@ -26,7 +26,8 @@ int main() {
     char **board;
     int size = getSize();
     char playerMove[MAX_BUF]; /*holds player coordinates*/
-    int coordinates[2]; /*holds converted coordinates (row, column) of playerMove*/
+    int previousRowCoordinate, previousColumnCoordinate; /*previous row, column coordinates*/
+	int rowCoordinate, columnCoordinate; /*holds converted coordinates (row, column) of playerMove*/
     int turn = 0; /*what turn game is currently at*/
     int valid = 0; /*if move is valid*/
     int player = 1; /*which player*/

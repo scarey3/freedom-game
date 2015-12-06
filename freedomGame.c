@@ -70,6 +70,7 @@ int getSize(){
         fgets(buffer, MAX_BUF-1, stdin);
         buffer[strlen(buffer)-1] = '\0';
         size = atoi(buffer);
+        //Check to see if size is allowed.
         if(size < MIN_SIZE || size > MAX_SIZE){
             printf("\"%s\" is not a valid board size, try again:\n", buffer);
             continue;
@@ -121,6 +122,7 @@ void printBoard(char **board, int size) {
     int spaces = 1;
     int n;
     
+    //Calculate spaces to be used after the first column
     n = size;
     while(n != 0){
         n/=10;
@@ -133,6 +135,7 @@ void printBoard(char **board, int size) {
     printf("\n");
     //Print rows
     for(i = size-1; i >= 0; i--){
+        //Calculate number of digits in row number
         n = i;
         digits = 0;
         if(n == 0)
@@ -142,6 +145,7 @@ void printBoard(char **board, int size) {
                 n/=10;
                 digits++;
             }
+        //Use digits to calculate actual number of spaces to use
         printf("%d%*s", i, spaces-digits, " ");
         for(j = 0; j < size; j++){
             printf("%c ", board[j][i]);

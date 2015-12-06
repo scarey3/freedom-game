@@ -6,50 +6,65 @@
 
 #include "freedomScoring.h"
 
-/*
-void checkVertical(char board[][COLUMNS], int live[][COLUMNS]) {
+// Checks each column for 4 of the same char in a row.
+void checkVertical(char **board, int **live, int size) {
     int count = 0;
     char value;
     
     int i = 0;
     int j = 0;
     int k = 0;
-    
-    for(i = 0; i < COLUMNS; i++) {
+
+    for(j = 0; j < size; j++) {
         count = 0;
-        
-        for(j = 0; j < ROWS; j++) {
-            if(count == 0) {
-                value = board[j][i];
+        for(i = 0; i < size; i++) {
+            value = board[i - count][j];
+            
+            if(board[i][j] == value) {
                 count++;
             }
-        
-            if(count > 0 && count < 4 && board[i][j] == value) {
-                count++;
-            }
-            else if((j == ROWS - 1 || board[i][j+1] != value) && count == 4) {
-                for(k = 0; k < 4; k++)
-                    live[i][j-k] = 1;
+            else {
+                if(count == 4) {
+                    for(k = 1; k < 5; k++) {
+                        live[i-k][j] = 5;
+                    } 
+                }
+                count = 0;
             }
         }
     }
-} */
-
-void checkVertical(char **board, int **live, int col, int row, int count) {
-    if(col > COLUMNS)
-        return;
-    if(count < 5 && (board[row+1][col+1] != board[row][col] || row == ROWS))
-        int i = 0;
-        int j = 0;
-        for(i = 0; i < 4; i++)
-            live[row - i][col];
-        
 }
 
-void checkHorizontal(char board[][COLUMNS], int live[][COLUMNS]) {
+// Checks each row for 4 of the same char in a row.
+void checkHorizontal(char **board, int **live, int size) {
+    int count = 0;
+    char value;
+    
+    int i = 0;
+    int j = 0;
+    int k = 0;
 
+    for(i = 0; i < size; i++) {
+        count = 0;
+        for(j = 0; j < size; j++) {
+            value = board[i][j - count];
+            
+            if(board[i][j] == value) {
+                count++;
+            }
+            else {
+                if(count == 4) {
+                    for(k = 1; k < 5; k++) {
+                        live[i][j-k] = 5;
+                    } 
+                }
+                count = 0;
+            }
+        }
+    }
 }
 
-void checkDiagonal(char board[][COLUMNS], int live[][COLUMNS]) {
-
+// Checks diagonally in both directions for 4 chars in a row.
+void checkDiagonal(char **board, int **live, int size) {
+    
 }

@@ -21,36 +21,9 @@ void score(char **board, int size) {
     int i = 0;
     int j = 0;
     
-    for(i = 0; i < size; i++) {
-        for(j = 0; j < size; j++) {
-            board[i][j] = 'B';
-        }
-    }
-    
-    for(i = 0; i < 5; i++) {
-        for(j = 0; j < 5; j++) {
-            board[i][j] = 'W';
-        }
-    }
-    
-    for(i = 0; i < size; i++) {
-        printf("\n");
-        for(j = 0; j < size; j++) {
-            printf("%c ", board[i][j]);
-        }
-    }
-    
     checkVertical(board, state, size);
     checkHorizontal(board, state, size);
     checkDiagonal(board, state, size);
-    
-    printf("\n");
-    for(i = 0; i < size; i++) {
-        printf("\n");
-        for(j = 0; j < size; j++) {
-            printf("%d ", state[i][j]);
-        }
-    }
     
     // Adds up the score from the state array.
     for(i = 0; i < size; i++)

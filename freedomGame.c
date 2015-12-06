@@ -90,7 +90,7 @@ char **allocateBoard(int size){
     for(i = 0; i < size; i++){
         *(board+i) = malloc(sizeof(char));
         if(*(board+i) == NULL){
-            fprintf(stderr, "Could not allocate %d bytes:", sizeof(char)*size);
+            fprintf(stderr, "Could not allocate %d bytes:", sizeof(char));
             perror("");
             exit(EXIT_FAILURE);
         }

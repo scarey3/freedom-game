@@ -23,8 +23,9 @@ int getSize();
 
 /*****************Main***************/
 int main() {
-    char **board;
-    int size = getSize();
+    char **board; //The game board
+    int size = getSize(); //Size of one dimension of the board
+    int maxTurns = size*size; //Max number of turns
     char playerMove[MAX_BUF]; /*holds player coordinates*/
     int previousRowCoordinate, previousColumnCoordinate; /*previous row, column coordinates*/
 	int rowCoordinate, columnCoordinate; /*holds converted coordinates (row, column) of playerMove*/
@@ -41,23 +42,19 @@ int main() {
     
     //player 1 enter move
     printf("Welcome to Freedom! White goes first! Please choose a space.\n");
-    getPlayerMove(playerMove);
-    
-    /*call convertPlayerMove*/
-    //Check validity of move
-    /*call isValid*/
-    //Make move
-    /*call implementPlayerMove*/
-    //switch player
     while(1){
-        //next player enter move
+        //Get player move
+        getPlayerMove(playerMove);
         //Check validity of move
         //Make move
-        if(/*moves == size*size*/){
-            //Calculate score
-            //End game
+        if(turn == max_turns){
+            //Calculate score and end game
+            score(board, size);
+            freeBoard(board, size);
+            break;
         }else{
-            //switch player
+            //Switch player
+            player = (player == 1) ? 2 : 1;
         }
     }
     return 0;

@@ -8,21 +8,23 @@
 #include "freedomMoves.h"
 #include "freedomScoring.h"
 
-#define ROWS 10
-#define COLUMNS 10
-#define pmBUFFER 4
-#define cBUFFER 3
 /*prototype declarations*/
-void printBoard(char board[][COLUMNS]);
+
 
 /*****************Main***************/
 int main() {
-    char board[ROWS][COLUMNS]; /*board*/
-    char playerMove[pmBUFFER] = "\0\0\0\0"; /*holds player coordinates*/
-	int coordinates[cBUFFER]; /*holds converted coordinates (row, column) of playerMove*/
+    char **board; /*board*/
+    char playerMove[pmBUFFER]; /*holds player coordinates*/
+	//int coordinates[cBUFFER]; /*holds converted coordinates (row, column) of playerMove*/
+	int previousRowCoordinate, previousColumnCoordinate; /*previous row, column coordinates*/
+	int rowCoordinate, columnCoordinate; /*holds converted coordinates (row, column) of playerMove*/
 	int turn = 0;
 	int valid = 0;
-	int player = 2;
+	int player = 1;
+	
+	/*clear playerMove*/
+    memset(playerMove, '\0', pmBUFFER);
+	
   	return 0;
 }
 /*******************Functions********************/
@@ -51,9 +53,5 @@ void playGame(void){
 		
 	}	
 	
-}
-// TODO: Function will print the board.
-void printBoard(char board[][COLUMNS]) {
-
 }
 

@@ -35,13 +35,13 @@ void playGame(void){
 	int coordinates[cBUFFER]; /*holds converted coordinates (row, column) of playerMove*/
 	
 	
-	while(newGame == 'Y'|| newGame =='y'){
+	/*while(newGame == 'Y'|| newGame =='y'){
 		/*print board*/
 		//printBoard(board[][COLUMNS]);
 		
 		/*welcome message. Get user input*/
-		printf("Welcome to Freedom! White goes first! Please choose a space.\n");
-		getPlayerMove(playerMove);
+		/*printf("Welcome to Freedom! White goes first! Please choose a space.\n");
+		getPlayerMove(playerMove);*/
 		
 		/*convert user input*/
 		
@@ -51,7 +51,7 @@ void playGame(void){
 		
 		/*change player turn*/
 		
-	}	
+	/*}*/	
 	
 }
 

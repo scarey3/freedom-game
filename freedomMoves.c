@@ -120,7 +120,7 @@ int isValid(int turn, char **board, int freedom, int size, int previousRowCoordi
 				if(freedom == 1){ //FIX ME: may have to check this my self
 					return 1;
 				} 
-				/*if the position is adjacent to last move OR all adjacent tiles are filled*/
+				/*if the position is adjacent to last move*/
 				/*call to adjacentTiles()*/
 				if(adjacentTiles(previousRowCoordinate, previousColumnCoordinate, rowCoordinate, columnCoordinate) == 1){
 					return 1;

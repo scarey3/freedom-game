@@ -12,6 +12,11 @@
 
 #include "freedomScoring.h"
 
+void checkVertical(char **board, int **state, int size);
+void checkHorizontal(char **board, int **state, int size);
+void checkDiagonal(char **board, int **state, int size);
+int **allocateStateArray(int size);
+
 // Called in main. Calculates and displays the scores.
 void score(char **board, int size) {
     int blackScore = 0;

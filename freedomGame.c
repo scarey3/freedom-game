@@ -15,9 +15,11 @@
 int main() {
     char **board; /*board*/
     char playerMove[pmBUFFER]; /*holds player coordinates*/
+	int size = 10;
 	//int coordinates[cBUFFER]; /*holds converted coordinates (row, column) of playerMove*/
 	int previousRowCoordinate, previousColumnCoordinate; /*previous row, column coordinates*/
 	int rowCoordinate, columnCoordinate; /*holds converted coordinates (row, column) of playerMove*/
+	int freedom = 0;
 	int turn = 0;
 	int valid = 0;
 	int player = 1;
@@ -25,33 +27,31 @@ int main() {
 	/*clear playerMove*/
     memset(playerMove, '\0', pmBUFFER);
 	
+	/*welcome message. Get user input*/
+	printf("Welcome to Freedom! White goes first! Please choose a space.\n");
+	getPlayerMove(playerMove);
+	
+	/*convert user input*/
+	convertPlayerMove(playerMove, size, &rowCoordinate, &columnCoordinate);
+	printf("Row is: %d\nColumn is: %d\n", rowCoordinate, columnCoordinate);
+	
+	/*validate user input*/
+	if(isValid(turn, board, freedom, size, previousRowCoordinate, previousColumnCoordinate, rowCoordinate, columnCoordinate) == 1){
+		printf("The move is valid!");
+	}
+	else{
+		printf("The move is not valid");
+	}
+	/*place piece on board*/
+	
+	/*change player turn*/
+		
+	
   	return 0;
 }
 /*******************Functions********************/
-/*game logic*/
-void playGame(void){
-	char newGame = 'Y'; /*if player wants to play new game*/
-	char playerMove[pmBUFFER]; /*holds player move*/
-	int coordinates[cBUFFER]; /*holds converted coordinates (row, column) of playerMove*/
+
+
 	
 	
-	/*while(newGame == 'Y'|| newGame =='y'){
-		/*print board*/
-		//printBoard(board[][COLUMNS]);
-		
-		/*welcome message. Get user input*/
-		/*printf("Welcome to Freedom! White goes first! Please choose a space.\n");
-		getPlayerMove(playerMove);*/
-		
-		/*convert user input*/
-		
-		/*validate user input*/
-		
-		/*place piece on board*/
-		
-		/*change player turn*/
-		
-	/*}*/	
-	
-}
 

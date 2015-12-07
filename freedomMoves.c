@@ -13,13 +13,13 @@ void getPlayerMove(char playerMove[]){
 
 	/*Get user input*/
 	fgets(playerMove, pmBUFFER, stdin);
-	//printf("%c %c %c %c\n", playerMove[0], playerMove[1], playerMove[2],playerMove[3]);
+	printf("%c %c %c %c\n", playerMove[0], playerMove[1], playerMove[2],playerMove[3]);
 	
 	return;
 }
 
 /*convert user input to tile position*/
-void convertPlayerMove(char playerMove[], int size, int *rowCoordinate, int *columnCoordinate){ //FIX ME: make more general
+void convertPlayerMove(char playerMove[], int size, int *rowCoordinate, int *columnCoordinate){
 	long row; /*holds row converted to long*/
 	char *ptr; /*useless null pointer. (for strtol())*/
 	char str1[3]; /*for strtol()*/
@@ -37,6 +37,7 @@ void convertPlayerMove(char playerMove[], int size, int *rowCoordinate, int *col
 	}
 	/*convert column from capital char to int*/
 	if(playerMove[0] >= 'A' && playerMove[0] <= 'Z'){
+		//printf("converting char to column...\n");
 		*columnCoordinate = playerMove[0] - 'A'; //<--offset necesary to convert to ints
 	}
 	/*user input for column is not an alphabetical char*/
@@ -48,24 +49,33 @@ void convertPlayerMove(char playerMove[], int size, int *rowCoordinate, int *col
 	/*row*/
 	/*if row coordinate lower than 10*/
 	if(playerMove[1] >= '1' && playerMove[1] <= '9'){
-		if(playerMove[2] == '\0'){
+		//printf("converting row...\n");
+		
+		/*checks if second coordinate is 10 or greater*/
+		if(playerMove[2] >= '0' && playerMove[2] <= '9'){
+			
+			/*convert to long*/
+			str1[0] = playerMove[1];
+			str1[1] = playerMove[2];
+
+			row = strtol(str1, &ptr, 10);
+			/*store to coordinate variable*/
+			*rowCoordinate = (int)row-1;
+			
+		}
+		/*if row is single digit*/
+		else if(!(playerMove[2] >= '0' && playerMove[2] <= '9')){
+		
 			/*convert to long*/
 			str2[0] = playerMove[1];
 			row = strtol(str2, &ptr, 10);
 			
-			/*store to coordinate variable*/
-			*rowCoordinate = row;
+			/*if row > 0, subtract 1*/
+			*rowCoordinate = (int)row-1;
 		}
-		/*checks if second coordinate is 10 or greater*/
-		if(playerMove[2] >= '0' && playerMove[2] <= '9'){
-		/*convert to long*/
-		str1[0] = playerMove[1];
-		str1[1] = playerMove[2];
-		row = strtol(str1, &ptr, 10);
-		
+		//printf("long row is %l\n", row);
 		/*store to coordinate variable*/
-		*rowCoordinate = row;
-		}
+		//*rowCoordinate = (int)row-1;
 	}
 	/*user input for row is not a numerical char*/
 	else{
@@ -77,11 +87,11 @@ void convertPlayerMove(char playerMove[], int size, int *rowCoordinate, int *col
 }
 
 /*check if tile position is valid. Return 1 if true, 0 if false*/
-int isValid(int turn, int freedom, char **board, int size, int previousRowCoordinate, int previousColumnCoordinate, int rowCoordinate, int columnCoordinate){ //FIX ME: make more general
+int isValid(int turn, char **board, int freedom, int size, int previousRowCoordinate, int previousColumnCoordinate, int rowCoordinate, int columnCoordinate){ //FIX ME: make more general
 	
 	/*if playerMove is within bounds of board*/
 	if(rowCoordinate >= 0 && rowCoordinate <= size){
-		if(columnCoordinate >= 0 && columnCoordinate <= columnCoordinate){
+		if(columnCoordinate >= 0 && columnCoordinate <= size){
 			/*if its turn 0*/
 			if(turn == 0){
 				return 1;
@@ -101,7 +111,6 @@ int isValid(int turn, int freedom, char **board, int size, int previousRowCoordi
 			
 		}
 	}
-	//if tile is empty
 	
 	//if the position is adjacent to last move OR all adjacent tiles are filled
 	

@@ -5,10 +5,14 @@
  */
 
 #include <stdio.h>
+#include <stdlib.h>
 
 #ifndef FREEDOMSCORING_H
     #define FREEDOMSCORING_H
-    // Function declarations go here.
     void score(char **board, int size);
+    int** allocateStateArray(int size);
+    void checkVertical(char **board, int **state, int size);
+    void checkHorizontal(char **board, int **state, int size);
+    void checkDiagonal(char **board, int **state, int size);
     
 #endif

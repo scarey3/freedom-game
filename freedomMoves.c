@@ -13,7 +13,7 @@ void getPlayerMove(char playerMove[]){
 	/*Clear buffer. Get user input*/
 	fflush(stdin);
 	fgets(playerMove, pmBUFFER, stdin);
-	printf("%c %c %c %c\n", playerMove[0], playerMove[1], playerMove[2],playerMove[3]);
+	//printf("%c %c %c %c\n", playerMove[0], playerMove[1], playerMove[2],playerMove[3]);
 	
 	/*if column is not lowercase OR uppercase char*/
 	/*if(!((playerMove[0] >= 'a' && playerMove[0] <= 'z') || (playerMove[0] >= 'A' && playerMove[0] <= 'Z'))){
@@ -28,10 +28,11 @@ void getPlayerMove(char playerMove[]){
 	}
 	
 	/*row is not a double digit*/
-	if((!(playerMove[2] >= '0' && playerMove[2] <= '9'))){
+	/*if((!(playerMove[2] == '\0')) || (!(playerMove[2] >= '0' && playerMove[2] <= '9'))){
 		printf("Sorry, the row you enterred was incorrect. Please enter coordinates again.\n");
 		getPlayerMove(playerMove);
-	}
+
+	}*/
 	return;
 }
 

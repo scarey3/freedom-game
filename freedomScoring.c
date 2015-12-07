@@ -96,7 +96,7 @@ void checkVertical(char **board, int **state, int size) {
                 if(count == 4) {
                     if(value == p1)
                         stateValue = 1;
-                    else
+                    else if(value == p2)
                         stateValue = 2;
                     for(k = 1; k < 5; k++)
                         state[i-k][j] = stateValue;
@@ -132,7 +132,7 @@ void checkHorizontal(char **board, int **state, int size) {
                 if(count == 4) {
                     if(value == p1)
                         stateValue = 1;
-                    else
+                    else if(value == p2)
                         stateValue = 2;
                     for(k = 1; k < 5; k++)
                         state[i][j-k] = stateValue;
@@ -147,7 +147,6 @@ void checkHorizontal(char **board, int **state, int size) {
 void checkDiagonal(char **board, int **state, int size) {
     int count = 0;
     char value;
-    int last = 0;
     char p1 = 'B';
     char p2 = 'W';
     int stateValue = 0;
@@ -187,7 +186,7 @@ void checkDiagonal(char **board, int **state, int size) {
                 if(board[row-1][j+1] != value) {
                     if(value == p1)
                         stateValue = 1;
-                    else
+                    else if(value == p2)
                         stateValue = 2;
                     for(k = 0; k < 4; k++)
                         state[row+k][j-k] = stateValue;
@@ -198,7 +197,7 @@ void checkDiagonal(char **board, int **state, int size) {
             else if(count == 4 && row == 0) {
                 if(value == p1)
                         stateValue = 1;
-                    else
+                    else if(value == p2)
                         stateValue = 2;
                     for(k = 0; k < 4; k++)
                         state[row+k][j-k] = stateValue;
@@ -232,7 +231,7 @@ void checkDiagonal(char **board, int **state, int size) {
                 if(board[row+1][j+1] != value) {
                     if(value == p1)
                         stateValue = 1;
-                    else
+                    else if(value == p2)
                         stateValue = 2;
                     for(k = 0; k < 4; k++)
                         state[row-k][j-k] = stateValue;
@@ -243,7 +242,7 @@ void checkDiagonal(char **board, int **state, int size) {
             else if(count == 4 && row == size-1) {
                 if(value == p1)
                         stateValue = 1;
-                    else
+                    else if(value == p2)
                         stateValue = 2;
                     for(k = 0; k < 4; k++)
                         state[row-k][j-k] = stateValue;
@@ -277,7 +276,7 @@ void checkDiagonal(char **board, int **state, int size) {
                 if(board[row-1][j-1] != value) {
                     if(value == p1)
                         stateValue = 1;
-                    else
+                    else if(value == p2)
                         stateValue = 2;
                     for(k = 0; k < 4; k++)
                         state[row+k][j+k] = stateValue;
@@ -288,7 +287,7 @@ void checkDiagonal(char **board, int **state, int size) {
             else if(count == 4 && row == 0) {
                 if(value == p1)
                         stateValue = 1;
-                    else
+                    else if(value == p2)
                         stateValue = 2;
                     for(k = 0; k < 4; k++)
                         state[row+k][j+k] = stateValue;
@@ -322,7 +321,7 @@ void checkDiagonal(char **board, int **state, int size) {
                 if(board[row-1][j+1] != value) {
                     if(value == p1)
                         stateValue = 1;
-                    else
+                    else if(value == p2)
                         stateValue = 2;
                     for(k = 0; k < 4; k++)
                         state[row-k][j+k] = stateValue;
@@ -333,7 +332,7 @@ void checkDiagonal(char **board, int **state, int size) {
             else if(count == 4 && row == size-1) {
                 if(value == p1)
                         stateValue = 1;
-                    else
+                    else if(value == p2)
                         stateValue = 2;
                     for(k = 0; k < 4; k++)
                         state[row-k][j+k] = stateValue;

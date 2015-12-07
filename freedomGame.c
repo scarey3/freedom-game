@@ -25,7 +25,7 @@ int getSize();
 int main() {
     char **board; //The game board
     int size = getSize(); //Size of one dimension of the board
-    int maxTurns = size*size; //Max number of turns
+    int max_turns = size*size; //Max number of turns
     char playerMove[pmBUFFER]; /*holds player coordinates*/
     int previousRowCoordinate = -1, previousColumnCoordinate = -1; /*previous row, column coordinates*/
     int rowCoordinate, columnCoordinate; /*holds converted coordinates (row, column) of playerMove*/

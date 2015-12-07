@@ -25,13 +25,12 @@ int getSize();
 int main() {
     char **board; //The game board
     int size = getSize(); //Size of one dimension of the board
-    int maxTurns = size*size; //Max number of turns
+    int max_turns = size*size; //Max number of turns
     char playerMove[pmBUFFER]; /*holds player coordinates*/
-    int previousRowCoordinate, previousColumnCoordinate; /*previous row, column coordinates*/
+    int previousRowCoordinate = -1, previousColumnCoordinate = -1; /*previous row, column coordinates*/
     int rowCoordinate, columnCoordinate; /*holds converted coordinates (row, column) of playerMove*/
 	int freedom = 0;
     int turn = 0; /*what turn game is currently at*/
-    int valid = 0; /*if move is valid*/
     int player = 1; /*which player*/
     
     /*clear playerMove*/
@@ -51,9 +50,23 @@ int main() {
 		convertPlayerMove(playerMove, size, &rowCoordinate, &columnCoordinate);
 		
         //Check validity of move
-		if(isValid(turn, board, freedom, size, previousRowCoordinate, previousColumnCoordinate, rowCoordinate, columnCoordinate) == 1){
+        if(freedomAvailable(board, size, previousRowCoordinate, previousColumnCoordinate)){
+            implementPlayerMove(player, rowCoordinate, columnCoordinate, board);
+            turn++;
+            if(turn == max_turns){
+				//Calculate score and end game
+				score(board, size);
+				freeBoard(board, size);
+				break;
+			}else{
+				//Switch player
+				player = (player == 1) ? 2 : 1;
+			}
+        }
+		else if(isValid(turn, board, freedom, size, previousRowCoordinate, previousColumnCoordinate, rowCoordinate, columnCoordinate) == 1){
 			//Make move
-			/*make call to implementPlayerMove here*/
+			implementPlayerMove(player, rowCoordinate, columnCoordinate, board);
+			turn++;
 			if(turn == max_turns){
 				//Calculate score and end game
 				score(board, size);

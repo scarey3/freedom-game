@@ -11,6 +11,13 @@
  */
 
 #include "freedomScoring.h"
+#include <stdlib.h>
+
+void checkVertical(char **board, int **state, int size);
+void checkHorizontal(char **board, int **state, int size);
+void checkDiagonal(char **board, int **state, int size);
+int **allocateStateArray(int size);
+void freeStateArray(int **array, int size);
 
 // Called in main. Calculates and displays the scores.
 void score(char **board, int size) {
@@ -44,6 +51,7 @@ void score(char **board, int size) {
     else {
         printf("\nTie %d-%d.\n", blackScore, whiteScore);
     }
+    freeStateArray(state, size);
 }
 
 // Dynamically creates the state array
@@ -332,4 +340,11 @@ void checkDiagonal(char **board, int **state, int size) {
             }   
         }
     }
+}
+
+void freeStateArray(int **array, int size){
+    int i;
+    for(i = 0; i < size; i++)
+        free(array[i]);
+    free(array);
 }

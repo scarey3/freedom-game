@@ -6,6 +6,7 @@
 #include "freedomMoves.h"
 #include <ctype.h>
 #include <string.h>
+#include <stdlib.h>
 
 /*******************Functions********************/
 /*Retrieves and returns the player's input*/
@@ -31,6 +32,7 @@ void getPlayerMove(char playerMove[]){
 	/*if((!(playerMove[2] == '\0')) || (!(playerMove[2] >= '0' && playerMove[2] <= '9'))){
 		printf("Sorry, the row you enterred was incorrect. Please enter coordinates again.\n");
 		getPlayerMove(playerMove);
+
 	}*/
 	return;
 }
@@ -188,21 +190,38 @@ int adjacentTiles(int previousRowCoordinate, int previousColumnCoordinate, int r
 		}
 		return 0;
 	}
-
+    return 0;
 }
 /*place piece on tile position*/
-void implementPlayerMove(int player, int coordinates[], char **board){
+void implementPlayerMove(int player, int rowCoordinate, int columnCoordinate, char **board){
 	
 	/*check if player1 (white)*/
 	if(player == 1){
 		/*place white piece*/
-		board[coordinates[0]][coordinates[1]] = 'W';
+		board[rowCoordinate][columnCoordinate] = 'W';
 	}
 	/*check if player2 (black)*/
 	else if(player == 2){
 		/*place black piece*/
-		board[coordinates[0]][coordinates[1]] = 'B';
+		board[rowCoordinate][columnCoordinate] = 'B';
 	}
-	printf("%c\n", board[coordinates[0]][coordinates[1]]);
+	printf("%c\n", board[rowCoordinate][columnCoordinate]);
 	return;
+}
+
+/*checks whether freedom move is allowed*/
+int freedomAvailable(char **board, int size,  int rowCoordinate, int columnCoordinate){
+    //If there is an available slot surrounding the given space, freedom is not enabled
+    if(rowCoordinate >= 0 && rowCoordinate <= size &&
+       board[rowCoordinate-1][columnCoordinate-1] != ' ' &&
+       board[rowCoordinate-1][columnCoordinate] != ' ' &&
+       board[rowCoordinate-1][columnCoordinate+1] != ' ' &&
+       board[rowCoordinate][columnCoordinate-1] != ' ' &&
+       board[rowCoordinate][columnCoordinate+1] != ' ' &&
+       board[rowCoordinate+1][columnCoordinate-1] != ' ' &&
+       board[rowCoordinate+1][columnCoordinate] != ' ' &&
+       board[rowCoordinate+1][columnCoordinate+1] != ' ')
+        return 0;
+    else
+        return 1;
 }

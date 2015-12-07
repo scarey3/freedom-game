@@ -14,6 +14,7 @@
 	void convertPlayerMove(char playerMove[], int size, int *rowCoordinate, int *columnCoordinate);
 	int isValid(int turn, char **board, int freedom, int size, int previousRowCoordinate, int previousColumnCoordinate, int rowCoordinate, int columnCoordinate);
 	int adjacentTiles(int previousRowCoordinate, int previousColumnCoordinate, int rowCoordinate, int columnCoordinate);
-	void implementPlayerMove(int player, int coordinates[], char **board);
+	void implementPlayerMove(int player, int rowCoordinate, int columnCoordinate, char **board);
+	int freedomAvailable(char **board, int size, int rowCoordinate, int columnCoordinate);
     
 #endif

@@ -11,15 +11,34 @@
 /*Retrieves and returns the player's input*/
 void getPlayerMove(char playerMove[]){
 
-	/*Get user input*/
+	/*Clear buffer. Get user input*/
+	fflush(stdin);
 	fgets(playerMove, pmBUFFER, stdin);
 	printf("%c %c %c %c\n", playerMove[0], playerMove[1], playerMove[2],playerMove[3]);
 	
+	/*if column is not lowercase OR uppercase char*/
+	/*if(!((playerMove[0] >= 'a' && playerMove[0] <= 'z') || (playerMove[0] >= 'A' && playerMove[0] <= 'Z'))){
+		printf("Sorry, the column you entered was incorrect. Please enter coordinates again.\n");
+		getPlayerMove(playerMove);
+	}
+	
+	/*row is not a single digit*/
+	/*if(!(playerMove[1] >= '1' && playerMove[1] <= '9')){
+		printf("Sorry, the row you enterred was incorrect. Please enter coordinates again.\n");
+		getPlayerMove(playerMove);
+	}
+	
+	/*row is not a double digit*/
+	/*if((!(playerMove[2] >= '0' && playerMove[2] <= '9'))){
+		printf("Sorry, the row you enterred was incorrect. Please enter coordinates again.\n");
+		getPlayerMove(playerMove);
+	}*/
 	return;
 }
 
 /*convert user input to tile position*/
 void convertPlayerMove(char playerMove[], int size, int *rowCoordinate, int *columnCoordinate){
+	/*TODO: move valid characters checking to getPlayerMove function*/
 	long row; /*holds row converted to long*/
 	char *ptr; /*useless null pointer. (for strtol())*/
 	char str1[3]; /*for strtol()*/
@@ -41,10 +60,10 @@ void convertPlayerMove(char playerMove[], int size, int *rowCoordinate, int *col
 		*columnCoordinate = playerMove[0] - 'A'; //<--offset necesary to convert to ints
 	}
 	/*user input for column is not an alphabetical char*/
-	else{
-		printf("Sorry, the column you enterred was incorrect. Please enter coordinates again.\n");
+	/*else{
+		printf("Sorry, the column you entered was incorrect. Please enter coordinates again.\n");
 		getPlayerMove(playerMove);
-	}
+	}*/
 	
 	/*row*/
 	/*if row coordinate lower than 10*/
@@ -78,17 +97,17 @@ void convertPlayerMove(char playerMove[], int size, int *rowCoordinate, int *col
 		//*rowCoordinate = (int)row-1;
 	}
 	/*user input for row is not a numerical char*/
-	else{
+	/*else{
 		printf("Sorry, the column you enterred was incorrect. Please enter coordinates again.\n");
 		getPlayerMove(playerMove);
-	}
+	}*/
 
 	return;
 }
 
 /*check if tile position is valid. Return 1 if true, 0 if false*/
 int isValid(int turn, char **board, int freedom, int size, int previousRowCoordinate, int previousColumnCoordinate, int rowCoordinate, int columnCoordinate){ //FIX ME: make more general
-	
+	//printf("Made it in to isValid. Checking if within bounds of board...\n");
 	/*if playerMove is within bounds of board*/
 	if(rowCoordinate >= 0 && rowCoordinate <= size){
 		if(columnCoordinate >= 0 && columnCoordinate <= size){

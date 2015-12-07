@@ -33,9 +33,10 @@ int main() {
 	
 	/*convert user input*/
 	convertPlayerMove(playerMove, size, &rowCoordinate, &columnCoordinate);
-	printf("Row is: %d\nColumn is: %d\n", rowCoordinate, columnCoordinate);
+	//printf("Row is: %d\nColumn is: %d\n", rowCoordinate, columnCoordinate);
 	
 	/*validate user input*/
+	//printf("checking if move is valid...");
 	if(isValid(turn, board, freedom, size, previousRowCoordinate, previousColumnCoordinate, rowCoordinate, columnCoordinate) == 1){
 		printf("The move is valid!");
 	}

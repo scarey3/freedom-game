@@ -5,8 +5,7 @@
  */
 
 #include <stdio.h>
-#define pmBUFFER 4
-
+#define pmBUFFER 4 /*for playerMove buffer*/
 
 #ifndef FREEDOMMOVES_H
     #define FREEDOMMOVES_H

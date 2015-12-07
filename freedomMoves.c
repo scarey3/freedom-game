@@ -10,7 +10,6 @@
 /*******************Functions********************/
 /*Retrieves and returns the player's input*/
 void getPlayerMove(char playerMove[]){
-
 	/*Clear buffer. Get user input*/
 	fflush(stdin);
 	fgets(playerMove, pmBUFFER, stdin);

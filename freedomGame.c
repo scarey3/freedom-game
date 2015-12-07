@@ -28,7 +28,8 @@ int main() {
     int maxTurns = size*size; //Max number of turns
     char playerMove[pmBUFFER]; /*holds player coordinates*/
     int previousRowCoordinate, previousColumnCoordinate; /*previous row, column coordinates*/
-	int rowCoordinate, columnCoordinate; /*holds converted coordinates (row, column) of playerMove*/
+    int rowCoordinate, columnCoordinate; /*holds converted coordinates (row, column) of playerMove*/
+	int freedom = 0;
     int turn = 0; /*what turn game is currently at*/
     int valid = 0; /*if move is valid*/
     int player = 1; /*which player*/
@@ -45,17 +46,26 @@ int main() {
     while(1){
         //Get player move
         getPlayerMove(playerMove);
+		
+		/*convert user input*/
+		convertPlayerMove(playerMove, size, &rowCoordinate, &columnCoordinate);
+		
         //Check validity of move
-        //Make move
-        if(turn == max_turns){
-            //Calculate score and end game
-            score(board, size);
-            freeBoard(board, size);
-            break;
-        }else{
-            //Switch player
-            player = (player == 1) ? 2 : 1;
-        }
+		if(isValid(turn, board, freedom, size, previousRowCoordinate, previousColumnCoordinate, rowCoordinate, columnCoordinate) == 1){
+			//Make move
+			if(turn == max_turns){
+				//Calculate score and end game
+				score(board, size);
+				freeBoard(board, size);
+				break;
+			}else{
+				//Switch player
+				player = (player == 1) ? 2 : 1;
+			}
+		}
+		else{
+			printf("The move is not valid");
+		}
     }
     return 0;
 }

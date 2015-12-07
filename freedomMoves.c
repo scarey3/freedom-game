@@ -6,6 +6,7 @@
 #include "freedomMoves.h"
 #include <ctype.h>
 #include <string.h>
+#include <stdlib.h>
 
 /*******************Functions********************/
 /*Retrieves and returns the player's input*/

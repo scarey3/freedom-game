@@ -53,6 +53,7 @@ int main() {
         //Check validity of move
 		if(isValid(turn, board, freedom, size, previousRowCoordinate, previousColumnCoordinate, rowCoordinate, columnCoordinate) == 1){
 			//Make move
+			/*make call to implementPlayerMove here*/
 			if(turn == max_turns){
 				//Calculate score and end game
 				score(board, size);

@@ -41,8 +41,9 @@ int main() {
     printBoard(board, size);
     
     //player 1 enter move
-    printf("Welcome to Freedom! White goes first! Please choose a space.\n");
+    printf("Welcome to Freedom! White goes first!\n");
     while(1){
+        printf("%s please enter a space: ", (player == 1)?"White":"Black");
         //Get player move
         getPlayerMove(playerMove);
 		
@@ -53,6 +54,10 @@ int main() {
         if(freedomAvailable(board, size, previousRowCoordinate, previousColumnCoordinate)){
             implementPlayerMove(player, rowCoordinate, columnCoordinate, board);
             turn++;
+		    //save previous coordinates
+            previousRowCoordinate = rowCoordinate;
+            previousColumnCoordinate = columnCoordinate;
+            
             if(turn == max_turns){
 				//Calculate score and end game
 				score(board, size);
@@ -67,8 +72,13 @@ int main() {
 			//Make move
 			implementPlayerMove(player, rowCoordinate, columnCoordinate, board);
 			turn++;
+		    //save previous coordinates
+            previousRowCoordinate = rowCoordinate;
+            previousColumnCoordinate = columnCoordinate;
+            
 			if(turn == max_turns){
 				//Calculate score and end game
+				printBoard(board, size);
 				score(board, size);
 				freeBoard(board, size);
 				break;
@@ -78,8 +88,10 @@ int main() {
 			}
 		}
 		else{
-			printf("The move is not valid");
+			printf("The move is not valid\n");
 		}
+		//Print board
+		printBoard(board, size);
     }
     return 0;
 }
@@ -160,7 +172,7 @@ void printBoard(char **board, int size) {
     //Print rows
     for(i = size-1; i >= 0; i--){
         //Calculate number of digits in row number
-        n = i;
+        n = i+1;
         digits = 0;
         if(n == 0)
             digits = 1;
@@ -170,9 +182,9 @@ void printBoard(char **board, int size) {
                 digits++;
             }
         //Use digits to calculate actual number of spaces to use
-        printf("%d%*s", i, spaces-digits, " ");
+        printf("%d%*s", i+1, spaces-digits, " ");
         for(j = 0; j < size; j++){
-            printf("%c ", board[j][i]);
+            printf("%c ", board[i][j]);
         }
         printf("\n");
     }

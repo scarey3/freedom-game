@@ -188,7 +188,7 @@ int adjacentTiles(int previousRowCoordinate, int previousColumnCoordinate, int r
 		}
 		return 0;
 	}
-
+    return 0;
 }
 /*place piece on tile position*/
 void implementPlayerMove(int player, int rowCoordinate, int columnCoordinate, char **board){

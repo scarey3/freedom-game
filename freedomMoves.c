@@ -191,18 +191,18 @@ int adjacentTiles(int previousRowCoordinate, int previousColumnCoordinate, int r
 
 }
 /*place piece on tile position*/
-void implementPlayerMove(int player, int coordinates[], char **board){
+void implementPlayerMove(int player, int rowCoordinate, int columnCoordinate, char **board){
 	
 	/*check if player1 (white)*/
 	if(player == 1){
 		/*place white piece*/
-		board[coordinates[0]][coordinates[1]] = 'W';
+		board[rowCoordinate][columnCoordinate] = 'W';
 	}
 	/*check if player2 (black)*/
 	else if(player == 2){
 		/*place black piece*/
-		board[coordinates[0]][coordinates[1]] = 'B';
+		board[rowCoordinate][columnCoordinate] = 'B';
 	}
-	printf("%c\n", board[coordinates[0]][coordinates[1]]);
+	printf("%c\n", board[rowCoordinate][columnCoordinate]);
 	return;
 }

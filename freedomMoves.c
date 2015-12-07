@@ -206,3 +206,20 @@ void implementPlayerMove(int player, int rowCoordinate, int columnCoordinate, ch
 	printf("%c\n", board[rowCoordinate][columnCoordinate]);
 	return;
 }
+
+/*checks whether freedom move is allowed*/
+int freedomAvailable(char **board, int size,  int rowCoordinate, int columnCoordinate){
+    //If there is an available slot surrounding the given space, freedom is not enabled
+    if(rowCoordinate >= 0 && rowCoordinate <= size &&
+       board[rowCoordinate-1][columnCoordinate-1] != ' ' &&
+       board[rowCoordinate-1][columnCoordinate] != ' ' &&
+       board[rowCoordinate-1][columnCoordinate+1] != ' ' &&
+       board[rowCoordinate][columnCoordinate-1] != ' ' &&
+       board[rowCoordinate][columnCoordinate+1] != ' ' &&
+       board[rowCoordinate+1][columnCoordinate-1] != ' ' &&
+       board[rowCoordinate+1][columnCoordinate] != ' ' &&
+       board[rowCoordinate+1][columnCoordinate+1] != ' ')
+        return 0;
+    else
+        return 1;
+}

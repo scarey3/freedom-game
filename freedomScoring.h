@@ -9,5 +9,6 @@
 #ifndef FREEDOMSCORING_H
     #define FREEDOMSCORING_H
     // Function declarations go here.
+    void score(char **board, int size);
     
 #endif

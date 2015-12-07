@@ -5,6 +5,7 @@
  */
 
 #include <stdio.h>
+#define pmBUFFER 4 /*for playerMove buffer*/
 
 #ifndef FREEDOMMOVES_H
     #define FREEDOMMOVES_H
@@ -15,3 +16,4 @@
 	void implementPlayerMove(int player, int coordinates[], char board[][COLUMNS]);
     
 #endif
+
